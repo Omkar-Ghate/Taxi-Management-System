@@ -22,7 +22,8 @@ const userRegistration = (req, res) => {
       });
     }
 
-    connection.query(`select * from user where username = "${userName}"`, function (error, results) {
+    const checkQuery = `select * from user where userName = "${userName}"`;
+    connection.query(checkQuery, function (error, results) {
       if (error) throw new Error(error);
       // console.log(results.length);
 
@@ -38,11 +39,10 @@ const userRegistration = (req, res) => {
         const ageDate = new Date(ageDifMs); // miliseconds from epoch
         const age = Math.floor(Math.abs(ageDate.getUTCFullYear() - 1970));
 
-        const query = `insert into user(name,geneder,birth,age,mail,phone,username,password) values("${fullName}", "${gender}", "${birthDate}", "${age}", "${email}", "${phone}", "${userName}", "${password}")`;
+        const query = `insert into user(name, gender, birth, age, mail, phone, userName, password) values("${fullName}", "${gender}", "${birthDate}", "${age}", "${email}", "${phone}", "${userName}", "${password}")`;
 
-        connection.query(query, function (error, results) {
+        connection.query(query, function (error) {
           if (error) throw new Error(error);
-          // console.log(results);
 
           return res.send({
             message: "User Registration Successful...",

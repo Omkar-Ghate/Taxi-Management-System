@@ -1,4 +1,4 @@
-const login = async (data) => {
+const adminLogin = async (data) => {
   document.querySelector(".loadingContainer").classList.toggle("loading");
 
   const arg = {
@@ -10,12 +10,12 @@ const login = async (data) => {
   };
 
   try {
-    const response = await fetch(`/api/login/${data.role}`, arg);
+    const response = await fetch("/api/login/admin", arg);
     const result = await response.json();
 
     if (result.code === 200) {
       const token = result.data.token;
-      window.location.replace(`../${data.role}/?token=${token}`);
+      window.location.replace(`../admin/?token=${token}`);
     } else if (result.code === 500) {
       throw new Error(result.message);
     } else {
@@ -29,4 +29,4 @@ const login = async (data) => {
   document.querySelector(".loadingContainer").classList.toggle("loading");
 };
 
-export { login };
+export { adminLogin };

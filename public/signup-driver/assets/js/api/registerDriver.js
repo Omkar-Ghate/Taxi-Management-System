@@ -1,5 +1,15 @@
-const login = async (data) => {
+import { driverInfo } from "../forms/driverForm.js";
+import { licenseInfo } from "../forms/licenseForm.js";
+import { loginInfo } from "../forms/loginForm.js";
+
+const registerDriver = async () => {
   document.querySelector(".loadingContainer").classList.toggle("loading");
+
+  const data = {
+    ...driverInfo,
+    ...licenseInfo,
+    ...loginInfo,
+  };
 
   const arg = {
     method: "POST",
@@ -10,12 +20,12 @@ const login = async (data) => {
   };
 
   try {
-    const response = await fetch(`/api/login/${data.role}`, arg);
+    const response = await fetch("/api/registration/driver", arg);
     const result = await response.json();
 
     if (result.code === 200) {
-      const token = result.data.token;
-      window.location.replace(`../${data.role}/?token=${token}`);
+      alert("Driver Registered Successfully...");
+      window.location.replace("../");
     } else if (result.code === 500) {
       throw new Error(result.message);
     } else {
@@ -23,10 +33,10 @@ const login = async (data) => {
     }
   } catch (error) {
     console.log(error);
-    alert("Login Failed...\nPlease try again later!");
+    alert("Driver Registration Failed!!!\nPlease try again later!");
   }
 
   document.querySelector(".loadingContainer").classList.toggle("loading");
 };
 
-export { login };
+export { registerDriver };

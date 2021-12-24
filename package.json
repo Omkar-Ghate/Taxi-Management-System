@@ -1,17 +1,13 @@
 {
-  "name": "taxi_management_system",
+  "name": "pbl-taxi",
   "version": "1.0.0",
-  "description": "",
+  "description": "PBL group 4 sem 5",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ."
   },
-  "repository": {
-    "type": "git",
-    "url": "\u001b"
-  },
-  "author": "Omkar Ghate",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
